@@ -1,13 +1,13 @@
 <template>
   <div class="container mx-auto py-12">
     <div class="text-center mb-5">
-      <h1 class="text-4xl font-bold text-gray-800">Our Services</h1>
-      <p class="text-gray-600 mt-4">
+      <h1 class="text-2xl lg:text-4xl font-bold text-gray-800">Our Services</h1>
+      <p class="text-gray-600 mt-2 lg:mt-4 text-sm lg:text-lg">
         Discover what we offer to make your celebrations unforgettable!
       </p>
     </div>
 
-    <div class="container mx-auto p-8">
+    <div class="container mx-auto lg:p-8">
       <!-- Tabs Navigation -->
       <div class="flex justify-center space-x-4 mb-6">
         <button
@@ -18,14 +18,14 @@
             'bg-green-800 text-white': activeTab === index,
             'bg-green-100 text-gray-700': activeTab !== index,
           }"
-          class="px-6 w-100 py-2 rounded-lg shadow-md font-regular transition-all duration-300 ease-in-out"
+          class="px-3 lg:px-6 w-100 text-sm lg:text-lg py-2 rounded-lg shadow-md font-regular transition-all duration-300 ease-in-out"
         >
           {{ tab.label }}
         </button>
       </div>
 
       <!-- Tabs Content -->
-      <div class="bg-white p-6 rounded-lg shadow-lg">
+      <div class="bg-white lg:p-6 rounded-lg shadow-lg">
         <!-- Cakes by Occasion Tab -->
         <div v-if="activeTab === 0">
           <div class="grid grid-cols-3 gap-4">
@@ -35,7 +35,7 @@
               class="relative"
             >
               <div
-                class="p-4 text-lg text-gray-700 hover:text-primary transition-all duration-300"
+                class="p-2 lg:p-4 text-sm lg:text-lg text-gray-700 hover:text-primary transition-all duration-300"
               >
                 {{ occasion }}
               </div>

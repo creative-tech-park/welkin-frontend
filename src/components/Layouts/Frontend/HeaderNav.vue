@@ -97,7 +97,7 @@
 
       <li class="p-4 lg:px-5">
         <RouterLink to="/custom-cake" class="font-bold hover:text-primary-300"
-          >Custom Order</RouterLink
+          >Custom Cake</RouterLink
         >
       </li>
       <!--      <li class="p-4 lg:px-5">

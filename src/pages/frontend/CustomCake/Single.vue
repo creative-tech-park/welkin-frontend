@@ -1,19 +1,19 @@
 <template>
   <AppLayout>
     <div class="mx-auto py-12 container">
-      <div class="grid grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <!-- Left Column: Cake Image -->
         <div>
-          <div class="flex justify-center items-center relative">
+          <div class="flex justify-center items-center relative w-[280px] h-[200px] lg:w-[580px] lg:h-[500px] mx-auto">
             <div
               v-if="loading"
-              class="w-full h-[500px] bg-gray-300 rounded-lg shadow-md animate-pulse"
+              class=" bg-gray-300 rounded-lg shadow-md animate-pulse"
             ></div>
             <img
               v-else
               :src="productDetails.image_url"
               alt="Placeholder Image"
-              class="w-full h-[500px] object-cover rounded-lg shadow-md"
+              class="w-full h-full lg:w-[580px] lg:h-[500px] object-cover rounded-lg shadow-md"
             />
             <div
               v-if="uploadedImage"
@@ -21,15 +21,15 @@
             >
               <div
                 :class="[
-                  isSquare ? 'rounded-none' : 'rounded-full',
-                  'overflow-hidden relative',
+                  isSquare ? 'rounded-none ' : 'rounded-full left-1/2 top-[28px] lg:top-[91px] -translate-x-1/2',
+                  'overflow-hidden absolute ',
                 ]"
                 :style="{
-                  width: isSquare ? '92%' : '55%',
-                  height: isSquare ? '20%' : '42%',
+                  width: isSquare ? '92%' : '57%',
+                  height: isSquare ? '20%' : '47%',
                   position: 'absolute',
-                  top: isSquare ? '33%' : '18%',
-                  left: isSquare ? '5%' : '23%',
+                  top: isSquare ? '33%' : '',
+                  left: isSquare ? '5%' : '',
                 }"
               >
                 <img

@@ -11,8 +11,6 @@ const authStore = useAuthStore();
 
 const route = useRoute();
 const settings = inject("settings");
-const locations = inject("locations");
-const categories = inject("categories");
 const parentCats = inject("parentCats");
 
 // Reactive variable to control subcategories visibility
@@ -43,7 +41,7 @@ const toggleSubcategories = () => {
       </div>
 
       <div>
-        <!--            menu bar-->
+        <!--    menu bar-->
         <div class="flex items-center gap-3">
           <RouterLink
             :to="{ name: 'AddToCart' }"
@@ -88,17 +86,14 @@ const toggleSubcategories = () => {
           :class="{
             'translate-x-0': toggleNav,
             'translate-x-full': !toggleNav,
-            'bg-white': !authStore.isLoggedIn,
-            'bg-primary-500': authStore.isLoggedIn,
           }"
-          class="fixed w-full top-0 right-0 bottom-0 h-full z-50 lg:hidden transition-all ease-in-out duration-500 border-2 border-gray-100 overflow-y-scroll"
+          class="fixed bg-white w-full top-0 right-0 bottom-0 h-full z-50 lg:hidden transition-all ease-in-out duration-500 border-2 border-gray-100 overflow-y-scroll"
         >
           <div class="flex justify-between py-4 px-3 border-b">
             <button @click="toggleNav = false">
               <Icon
                 name="material-symbols:close-small"
-                class="text-4xl"
-                :class="authStore.isLoggedIn ? 'text-white' : 'text-secondary'"
+                class="text-4xl text-green-500"
               />
             </button>
 
@@ -113,81 +108,21 @@ const toggleSubcategories = () => {
                 class="text-2xl text-secondary"
               />
             </RouterLink>
+			<ul class="flex items-center gap-3" v-else>
+				<li>
+					<RouterLink to="/dashboard" class="flex gap-1 text-sm text-primary font-normal">Dashboard</RouterLink>
+				</li>
+				<li>
+					<RouterLink to="/dashboard/address" class="flex gap-1 text-sm text-primary font-normal">Address</RouterLink>
+				</li>
+				<li>
+					<RouterLink to="/dashboard/order" class="flex gap-1 text-sm text-primary font-normal">Order</RouterLink>
+				</li>
+
+			</ul>
           </div>
 
-          <div class="bg-primary-500" v-if="authStore?.isLoggedIn">
-            <ul class="flex flex-col gap-5 p-5">
-              <li>
-                <RouterLink to="/dashboard" class="flex items-center gap-2">
-                  <div
-                    class="w-10 h-10 bg-slate-400/50 border border-gray-100/50 rounded-full flex items-center justify-center"
-                  >
-                    <Icon
-                      name="ic:twotone-dashboard-customize"
-                      size="20"
-                      class="text-white"
-                    />
-                  </div>
-                  <p class="text-white">Dashboard</p>
-                </RouterLink>
-              </li>
-
-              <li>
-                <RouterLink
-                  :to="{ name: 'Addresses' }"
-                  class="flex items-center gap-2"
-                >
-                  <div
-                    class="w-10 h-10 bg-slate-400/50 border border-gray-100/50 rounded-full flex items-center justify-center"
-                  >
-                    <Icon
-                      name="carbon:category-new-each"
-                      size="20"
-                      class="text-white"
-                    />
-                  </div>
-                  <p class="text-white">Address</p>
-                </RouterLink>
-              </li>
-              <li>
-                <RouterLink
-                  to="/dashboard/order"
-                  class="flex items-center gap-2"
-                >
-                  <div
-                    class="w-10 h-10 bg-slate-400/50 border border-gray-100/50 rounded-full flex items-center justify-center"
-                  >
-                    <Icon
-                      name="material-symbols:shopping-cart-outline-sharp"
-                      size="20"
-                      class="text-white"
-                    />
-                  </div>
-                  <p class="text-white">Order</p>
-                </RouterLink>
-              </li>
-
-              <li>
-                <button
-                  @click="authStore.logout()"
-                  class="flex items-center gap-2"
-                >
-                  <div
-                    class="w-10 h-10 bg-slate-400/50 border border-gray-100/50 rounded-full flex items-center justify-center"
-                  >
-                    <Icon
-                      name="ri:logout-circle-line"
-                      size="20"
-                      class="text-white"
-                    />
-                  </div>
-                  <p class="text-white">Logout</p>
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          <div v-else class="px-4 py-3 text-gray-600">
+          <div class="px-4 py-3 text-gray-600">
             <div class="h-7 bg-primary-500">
               <div class="col-span-8 flex items-center h-full border-e px-1">
                 <marquee class="text-white text-xs">
@@ -197,18 +132,20 @@ const toggleSubcategories = () => {
             </div>
 
             <div class="mt-5 relative">
-              <SearchArea></SearchArea>
-              <!--              <div class="w-full h-10 relative">-->
-              <!--                <input class="border-2 h-full p-4 border-hover-500 rounded-md w-full font-normal text-xs placeholder-gray-400 focus:border-hover-500 focus:outline-none outline-none" placeholder="Search: Cakes, Cookies, Biscuits..."/>-->
-              <!--                <RouterLink class="absolute px-5 py-1 bg-primary-500 rounded-md top-1 right-1 text-white" to="/">Search</RouterLink>-->
-              <!--              </div>-->
+              <SearchArea></SearchArea> 
             </div>
 
             <div class="mt-5">
               <h1 class="border-b font-bold text-lg">Menus</h1>
               <ul class="flex flex-col gap-2 mt-5">
-                <li class="font-bold text-sm text-primary-300">
+                <li class="font-bold text-sm ">
                   <RouterLink to="/">Home</RouterLink>
+                </li>
+				<li class="font-bold text-sm">
+                  <RouterLink to="/all-products">All Products</RouterLink>
+                </li>
+				<li class="font-bold text-sm">
+                  <RouterLink to="/custom-cake">Custom Cake</RouterLink>
                 </li>
 
                 <!-- Categories with a click event -->
@@ -247,6 +184,9 @@ const toggleSubcategories = () => {
                   >
                     {{ item?.title }}
                   </RouterLink>
+                </li>
+				<li class="font-bold text-sm ">
+                  <RouterLink to="/contact">Contact</RouterLink>
                 </li>
               </ul>
             </div>

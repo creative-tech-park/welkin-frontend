@@ -1,7 +1,7 @@
 <template>
   <AppLayout>
     <div class="container mx-auto py-12">
-      <div class="grid grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Skeleton Loader or Cake Cards -->
         <div
           v-if="loading"
